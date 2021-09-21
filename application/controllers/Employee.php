@@ -27,11 +27,11 @@ class Employee extends CI_Controller {
         $config["uri_segment"] = 3;
 
         $this->pagination->initialize($config);
-		
-		$page = ($this->uri->segment(3))? $this->uri->segment(3) : 0;
-		
+        
+        $page = ($this->uri->segment(3))? $this->uri->segment(3) : 0;
         $data["links"] = $this->pagination->create_links();
         $data['employeedata']=$this->Employee_model->getEmployee($config["per_page"], $page);
+
         $this->load->view('employee/employee',$data);
     
     }
