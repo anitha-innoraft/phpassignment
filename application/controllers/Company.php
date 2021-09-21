@@ -60,8 +60,8 @@ class Company extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">','</div>');
         $this->form_validation->set_message('required', 'Enter %s');
 
-        $data['button'] = "Create";     
-        $data['title'] = "new_company";
+        $data1['button'] = "Create";     
+        $data1['title'] = "new_company";
 
         if($this->form_validation->run() === FALSE){  
             $this->load->view('company/add_company',$data);
@@ -69,43 +69,29 @@ class Company extends CI_Controller {
             $company_name = $_POST['company_name'];
             $company_email = $_POST['company_email'];
             $company_website = $_POST['company_website'];
+
+            $data = array(
+                'company_name' => $company_name,
+                'email' => $company_email,
+                'website' => $company_website
+            );
         
-            if(isset($_FILES['name'])){
+            if(isset($_FILES['company_logo']['name'])){
 
                 $uploaddata = $this->uploadFile($_FILES);
 
-                if(isset($uploaddata['error'])){
-                    
-                    $data['error'] = $uploaddata;
-                    $this->load->view('company/add_company', $data);
+                if(isset($uploaddata['error'])){                    
+                    $data1['error'] = $uploaddata;
+                    $this->load->view('company/add_company', $data1);
                 }else{
-                    $imagepath = $uploaddata['filename'];
-                    
-                    $data = array(
-                        'company_name' =>$company_name,
-                        'email' => $company_email,
-                        'logo' => $imagepath,
-                        'website' => $company_website
-                    );
-
-                    $newCompany = $this->Company_model->newCompany($data);
-                    $this->session->set_flashdata('msg', 'Successfully Added');
-                    redirect('company');
+                    $imagepath = $uploaddata['filename'];                    
+                    $data['logo'] = $imagepath;
                 }
 
-            }else{
-
-                $data = array(
-                    'company_name' => $company_name,
-                    'email' => $company_email,
-                    'website' => $company_website
-                );
-
-                $newCompany = $this->Company_model->newCompany($data);
-                $this->session->set_flashdata('msg', 'Successfully Added');
-                redirect('company');
-
             }
+            $newCompany = $this->Company_model->newCompany($data);
+            $this->session->set_flashdata('msg', 'Successfully Added');
+            redirect('company');
         }
                 
     }
