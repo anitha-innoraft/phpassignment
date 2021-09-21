@@ -2,19 +2,17 @@
 <html>
 	<head>
 		<title>
-         <?php 
-            if(isset($companydata)){
-               echo $this->lang->line('update_company');
-            }else{
-               echo $this->lang->line('add_company');
-            }
-         ?>
+			<?php 
+				if(isset($companydata)){
+					echo $this->lang->line('update_company');
+				}else{
+					echo $this->lang->line('add_company');
+				}
+			?>
       </title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 	</head>
-	<?php
-		echo '<p align="center" style="margin-left:920px;Margin-top:30px;"><a href="'.site_url().'Company/logout">Welcome Admin, Logout</a></p>';
-		?>
+		<?= '<p align="center" style="margin-left:920px;Margin-top:30px;"><a href="'.site_url().'company/logout">Welcome Admin, Logout</a></p>';?>
 	<body>
 		<div class="container">
 			<select class="form-control" style="float:right;width:17%;" onchange="javascript:window.location.href='<?php echo site_url(); ?>LanguageSwitcher/switchLang/'+this.value;">
@@ -32,11 +30,11 @@
 				<div class="panel-body">
 					<?php
 						if(isset($companydata)){
-						    $action=site_url()."company/updateCompany/".$company_id;
+						    $action = site_url()."company/updateCompany/".$company_id;
 						}else{
-						    $action=site_url()."company/addNewCompany/";
+						    $action = site_url()."company/addNewCompany/";
 						}
-						?>
+					?>
 					<form method="post" action="<?php echo $action;?>" enctype='multipart/form-data'>
 						<div class="form-group">
 							<label><?php echo $this->lang->line('company_name');?></label>
@@ -50,9 +48,8 @@
 						<div class="form-group">
 							<label><?php echo $this->lang->line('company_logo');?></label>
 							<input type="file" name="company_logo" class="form-control" value="" />
-							<?php 
-								if(isset($error)){?>
-							<span style="color:red;"><?php echo $error['error'];?></span>;
+							<?php if(isset($error)){ ?>
+								<span style="color:red;"><?php echo $error['error'];?></span>;
 							<?php } ?>
 						</div>
 						<div class="form-group">

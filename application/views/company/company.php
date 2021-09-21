@@ -5,9 +5,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css" />
 	</head>
-	<?php
-		echo '<p align="center" style="margin-left:920px;Margin-top:30px;"><a href="'.site_url().'company/logout">Welcome Admin, Logout</a></p>';
-		?>
+	<?= '<p align="center" style="margin-left:920px;Margin-top:30px;"><a href="'.site_url().'company/logout">Welcome Admin, Logout</a></p>';?>
 	<body>
 		<div class="container">
 			<select class="form-control" style="float:right;width:17%;" onchange="javascript:window.location.href='<?php echo site_url(); ?>LanguageSwitcher/switchLang/'+this.value;">
@@ -52,7 +50,7 @@
 										}else{
 										   $ssrc="assets/images/signimages.png";   
 										}
-										?>
+									?>
 									<img width="30" height="30" src="<?php echo base_url();?><?php echo $ssrc;?>"/>
 								</td>
 								<td><?php echo $val['company_name'];?></td>
