@@ -5,9 +5,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css" />
 	</head>
-	<?php
-		echo '<p align="center" style="margin-left:920px;Margin-top:30px;"><a href="'.site_url().'Company/logout">Welcome Admin, Logout</a></p>';
-		?>
+	<?= '<p align="center" style="margin-left:920px;Margin-top:30px;"><a href="'.site_url().'employee/logout">Welcome Admin, Logout</a></p>';?>
 	<body>
 		<div class="container">
 			<select class="form-control" style="float:right;width:17%;" onchange="javascript:window.location.href='<?php echo site_url(); ?>LanguageSwitcher/switchLang/'+this.value;">
@@ -41,7 +39,7 @@
 								$s  =   '';
 								foreach($employeedata as $val){
 								    $s++;
-								?>
+							?>
 							<tr>
 								<td><?php echo $s;?></td>
 								<td><?php echo $val['first_name']." ".$val['last_name'];?></td>

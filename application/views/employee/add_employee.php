@@ -2,19 +2,17 @@
 <html>
 	<head>
 		<title>
-		<?php 
-            if(isset($employeedata)){
-               echo $this->lang->line('update_employee');
-            }else{
-               echo $this->lang->line('add_employee');
-            }
-         ?>
+			<?php 
+				if(isset($employeedata)){
+					echo $this->lang->line('update_employee');
+				}else{
+					echo $this->lang->line('add_employee');
+				}
+			?>
 		</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 	</head>
-	<?php
-		echo '<p align="center" style="margin-left:920px;Margin-top:30px;"><a href="'.site_url().'Company/logout">Welcome Admin, Logout</a></p>';
-		?>
+	<?= '<p align="center" style="margin-left:920px;Margin-top:30px;"><a href="'.site_url().'employee/logout">Welcome Admin, Logout</a></p>';?>
 	<body>
 		<div class="container">
 			<select class="form-control" style="float:right;width:17%;" onchange="javascript:window.location.href='<?php echo site_url(); ?>LanguageSwitcher/switchLang/'+this.value;">
@@ -24,7 +22,7 @@
 			<br />
 			<h3 align="center"><?php echo $this->lang->line($title);?></h3>
 			<br />
-			<!-- <a href="<?php echo site_url(); ?>Employee" class="btn btn_primary">Employees List</a> -->
+			
 			<?php if($this->session->flashdata('msg')): ?>
 			<p><?php echo $this->session->flashdata('msg'); ?></p>
 			<?php endif; ?>
@@ -33,9 +31,9 @@
 				<div class="panel-body">
 					<?php
 						if(isset($employeedata)){
-						    $action=site_url()."employee/updateEmployee/".$employee_id;
+						    $action = site_url()."employee/updateEmployee/".$employee_id;
 						}else{
-						    $action=site_url()."employee/addNewEmployee/";
+						    $action = site_url()."employee/addNewEmployee/";
 						}
 						?>
 					<form method="post" action="<?php echo $action;?>" enctype='multipart/form-data'>
@@ -74,7 +72,7 @@
 									    echo "<option value='".$dataval['company_id']."' ".$selected.">".$dataval['company_name']."</option>";
 									}
 									
-									?>
+								?>
 							</select>
 							<span class="text-danger"><?php echo form_error('company'); ?></span>
 						</div>
