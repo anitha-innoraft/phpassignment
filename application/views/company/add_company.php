@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?php echo $this->lang->line('add_company');?></title>
+		<title>
+         <?php 
+            if(isset($companydata)){
+               echo $this->lang->line('update_company');
+            }else{
+               echo $this->lang->line('add_company');
+            }
+         ?>
+      </title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 	</head>
 	<?php
