@@ -40,7 +40,7 @@
 								$s  =   '';
 								foreach($companydata as $val){
 								    $s++;
-								?>
+							?>
 							<tr>
 								<td><?php echo $s;?></td>
 								<td>
