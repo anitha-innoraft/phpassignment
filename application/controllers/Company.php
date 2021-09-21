@@ -25,10 +25,8 @@ class Company extends CI_Controller {
         $config["per_page"] = 10;
         $config["uri_segment"] = 3;
 
-        $this->pagination->initialize($config);
-		
-		$page = ($this->uri->segment(3))? $this->uri->segment(3) : 0;
-		
+        $this->pagination->initialize($config);		
+		$page = ($this->uri->segment(3))? $this->uri->segment(3) : 0;		
         $data["links"] = $this->pagination->create_links();
         $data['companydata']=$this->Company_model->getCompany($config["per_page"], $page);
 
