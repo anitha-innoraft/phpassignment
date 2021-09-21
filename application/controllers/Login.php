@@ -9,7 +9,7 @@ class Login extends CI_Controller {
 
         if($this->session->userdata('id'))
         {
-            redirect('private_area');
+            redirect('login');
         }
         $this->load->library('form_validation');
         $this->load->library('encryption');
