@@ -15,7 +15,7 @@ class Company_model extends CI_Model
         }
         $company_data=$this->db->get('company');
         $company_data=$company_data->row_array();
-        
+
         if (!empty($company_data)){
             return $company_data;
         }
@@ -39,8 +39,7 @@ class Company_model extends CI_Model
         $query = $this->db->delete('company');
     }
 
-    function get_count() 
-	{
+    function get_count(){
         return $this->db->count_all("company");
     }
 }

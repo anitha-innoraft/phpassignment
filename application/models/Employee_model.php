@@ -40,8 +40,7 @@ class Employee_model extends CI_Model
         $query = $this->db->delete('employee');
     }
 
-    function get_count() 
-	{
+    function get_count(){
         return $this->db->count_all("employee");
     }
 }
