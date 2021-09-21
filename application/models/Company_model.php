@@ -42,6 +42,12 @@ class Company_model extends CI_Model
     function get_count(){
         return $this->db->count_all("company");
     }
+
+    function getCompanydata()
+    {
+        $company_data=$this->db->get('company')->result_array();
+        return $company_data;
+    }
 }
 
 ?>
