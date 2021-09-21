@@ -27,7 +27,7 @@ class Employee extends CI_Controller {
         $config["uri_segment"] = 3;
 
         $this->pagination->initialize($config);
-        
+
         $page = ($this->uri->segment(3))? $this->uri->segment(3) : 0;
         $data["links"] = $this->pagination->create_links();
         $data['employeedata']=$this->Employee_model->getEmployee($config["per_page"], $page);
@@ -39,7 +39,7 @@ class Employee extends CI_Controller {
     function addEmployee()
     {
         $data=array(); 
-        $data['companydata']=$this->Company_model->getCompany();
+        $data['companydata']=$this->Company_model->getCompanydata();
         $data['button'] ="Create";
         $data['title'] ="new_employee";
         $this->load->view('employee/add_employee',$data);
@@ -52,7 +52,7 @@ class Employee extends CI_Controller {
         if(isset($employee_id)){
             $data['employee_id']=$employee_id;
             $data['employeedata']=$this->Employee_model->getSingleEmployee($employee_id);
-            $data['companydata']=$this->Company_model->getCompany();
+            $data['companydata']=$this->Company_model->getCompanydata();
         }
         $data['button'] ="Update";     
         $data['title'] ="update_employee";
