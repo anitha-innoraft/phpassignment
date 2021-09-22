@@ -39,6 +39,7 @@
 							<?php
 								$s  =   '';
 								foreach($companydata as $val){
+
 								    $s++;
 							?>
 							<tr>
@@ -46,8 +47,10 @@
 								<td>
 									<?php
 										if($val['logo'] != ""){ 
+
 										   $ssrc="uploads/".$val['logo'];   
 										}else{
+											
 										   $ssrc="assets/images/signimages.png";   
 										}
 									?>

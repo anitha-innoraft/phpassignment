@@ -4,8 +4,10 @@
 		<title>
 			<?php 
 				if(isset($companydata)){
+
 					echo $this->lang->line('update_company');
 				}else{
+
 					echo $this->lang->line('add_company');
 				}
 			?>
@@ -30,8 +32,10 @@
 				<div class="panel-body">
 					<?php
 						if(isset($companydata)){
+
 						    $action = site_url()."company/updateCompany/".$company_id;
 						}else{
+							
 						    $action = site_url()."company/addNewCompany/";
 						}
 					?>
