@@ -4,8 +4,10 @@
 		<title>
 			<?php 
 				if(isset($employeedata)){
+
 					echo $this->lang->line('update_employee');
 				}else{
+
 					echo $this->lang->line('add_employee');
 				}
 			?>
@@ -31,8 +33,10 @@
 				<div class="panel-body">
 					<?php
 						if(isset($employeedata)){
+
 						    $action = site_url()."employee/updateEmployee/".$employee_id;
 						}else{
+
 						    $action = site_url()."employee/addNewEmployee/";
 						}
 						?>
@@ -65,10 +69,12 @@
 									foreach($companydata as $dataval){
 									
 									    if($dataval['company_id'] == $employeedata['company_id']){
+
 									       $selected="selected";
-									     }else{ 
+									    }else{ 
+
 									       $selected=""; 
-									     }
+									    }
 									    echo "<option value='".$dataval['company_id']."' ".$selected.">".$dataval['company_name']."</option>";
 									}
 									

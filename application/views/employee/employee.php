@@ -38,6 +38,7 @@
 							<?php
 								$s  =   '';
 								foreach($employeedata as $val){
+									
 								    $s++;
 							?>
 							<tr>
