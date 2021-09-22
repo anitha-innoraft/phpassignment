@@ -4,17 +4,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Company extends CI_Controller {
 
     public function __construct(){
+
         parent::__construct();
         $this->load->library(array('form_validation','session'));
         $this->load->library("pagination");
         $this->load->model('Company_model');
         
         if(!$this->session->userdata('id')){
+
             redirect('login');
         }
     }
 
     function index(){
+
         $data = array();
         $config = array();
         $config["base_url"] = base_url() . "index.php/company/index";
@@ -32,19 +35,23 @@ class Company extends CI_Controller {
     }
 
     function addCompany(){    
+
         $data['button'] = "Create";
         $data['title'] = "new_company";
         $this->load->view('company/add_company',$data);
     }
 
     function editCompany($company_id){
+
         $data = array();
 
         if(isset($company_id)){
+
             $data['company_id'] = $company_id;
             $singleComp = $this->Company_model->getSingleCompany($company_id);
 
             if($singleComp != 0){
+
                 $data['companydata'] = $singleComp;
             }
         }
@@ -64,8 +71,10 @@ class Company extends CI_Controller {
         $data1['title'] = "new_company";
 
         if($this->form_validation->run() === FALSE){  
+
             $this->load->view('company/add_company',$data);
         }else{   
+
             $company_name = $_POST['company_name'];
             $company_email = $_POST['company_email'];
             $company_website = $_POST['company_website'];
@@ -80,10 +89,12 @@ class Company extends CI_Controller {
 
                 $uploaddata = $this->uploadFile($_FILES);
 
-                if(isset($uploaddata['error'])){                    
+                if(isset($uploaddata['error'])){     
+
                     $data1['error'] = $uploaddata;
                     $this->load->view('company/add_company', $data1);
                 }else{
+
                     $imagepath = $uploaddata['filename'];                    
                     $data['logo'] = $imagepath;
                 }
@@ -97,6 +108,7 @@ class Company extends CI_Controller {
     }
 
     function updateCompany($company_id){
+
         $company_name = $_POST['company_name'];
         $company_email = $_POST['company_email'];
         $company_website = $_POST['company_website'];
@@ -111,17 +123,21 @@ class Company extends CI_Controller {
         );
         
         if(isset($_FILES['company_logo']['name'])){
+
             $uploaddata = $this->uploadFile($_FILES);
 
             if(isset($uploaddata['error'])){
+
                 $data1['error'] = $uploaddata;
                 $this->load->view('company/add_company', $data1);
             }else{                    
+
                 $imagepath = $uploaddata['filename'];
 
                 $singleComp = $this->Company_model->getSingleCompany($company_id);
 
                 if($singleComp != 0){
+
                     $oldFilename = $singleComp['logo'];
                     unlink("uploads/".$oldFilename);
                 }                
@@ -138,15 +154,18 @@ class Company extends CI_Controller {
     }
 
     function deleteCompany($company_id){
+
         $this->Company_model->deleteCompany($company_id);
         $this->session->set_flashdata('msg', 'Successfully Deleted');
         redirect('company');
     }
 
     function logout(){
+
         $data = $this->session->all_userdata();
 
         foreach($data as $row => $rows_value){
+
             $this->session->unset_userdata($row);
         }
         redirect('login');
@@ -154,6 +173,7 @@ class Company extends CI_Controller {
     }
 
     function uploadFile($file){
+
         $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 100;
@@ -164,10 +184,13 @@ class Company extends CI_Controller {
         $this->load->library('upload', $config);
 
         if(isset($file)){
+
             if( ! $this->upload->do_upload('company_logo')){
+
                 $error = array('error' => $this->upload->display_errors());
                 return $error;
             }else{
+                
                 $imageDetailArray = $this->upload->data();
                 $imagepath['filename'] = $imageDetailArray['file_name'];
                 return $imagepath;

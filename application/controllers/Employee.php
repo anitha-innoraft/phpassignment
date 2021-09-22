@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Employee extends CI_Controller {
 
     public function __construct(){
+
         parent::__construct();
         $this->load->model('Employee_model');
         $this->load->model('Company_model');
@@ -11,11 +12,13 @@ class Employee extends CI_Controller {
         $this->load->library("pagination");
 
         if(!$this->session->userdata('id')){
+
             redirect('login');
         }
     }
 
     function index(){
+
         $data = array();
         $config = array();
         $config["base_url"] = base_url() . "index.php/employee/index";
@@ -34,6 +37,7 @@ class Employee extends CI_Controller {
     }
 
     function addEmployee(){
+
         $data = array(); 
         $data['companydata'] = $this->Company_model->getCompanydata();
         $data['button'] = "Create";
@@ -42,12 +46,15 @@ class Employee extends CI_Controller {
     }
 
     function editEmployee($employee_id){
+
         $data = array();
 
         if(isset($employee_id)){
+
             $data['employee_id'] = $employee_id;
             $data['employeedata'] = $this->Employee_model->getSingleEmployee($employee_id);
             $data['companydata'] = $this->Company_model->getCompanydata();
+
         }
         $data['button'] = "Update";     
         $data['title'] = "update_employee";
@@ -55,6 +62,7 @@ class Employee extends CI_Controller {
     }
         
     function addNewEmployee(){
+
         $this->form_validation->set_rules('first_name', 'First Name', 'required');
         $this->form_validation->set_rules('last_name', 'Last Email', 'required');
         $this->form_validation->set_rules('company', 'Company', 'required');
@@ -67,8 +75,11 @@ class Employee extends CI_Controller {
         $data['title'] = "new_employee";
 
         if ($this->form_validation->run() === FALSE){  
+
             $this->load->view('employee/add_employee',$data);
+
         }else{
+
             $first_name = $_POST['first_name'];
             $last_name = $_POST['last_name'];
             $company_id = $_POST['company'];
@@ -110,14 +121,17 @@ class Employee extends CI_Controller {
     }
 
     function deleteEmployee($employee_id){
+
         $this->Employee_model->deleteEmployee($employee_id);
         redirect('employee');
     }
 
     function logout(){
+
         $data = $this->session->all_userdata();
         
         foreach($data as $row => $rows_value){
+            
             $this->session->unset_userdata($row);
         }
         redirect('login');
